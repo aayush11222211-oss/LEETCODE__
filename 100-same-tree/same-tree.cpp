@@ -12,25 +12,31 @@
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-      queue<TreeNode*>q1;
-      queue<TreeNode*>q2;
-      q1.push(p);
-      q2.push(q);
-      while(!q1.empty()&& !q2.empty()){
-        TreeNode * node1=q1.front();
-        TreeNode * node2=q2.front();
-        q1.pop();
-        q2.pop();
-        if(!node1 && !node2) continue; // both are null continue for next element 
+    //   queue<TreeNode*>q1;
+    //   queue<TreeNode*>q2;
+    //   q1.push(p);
+    //   q2.push(q);
+    //   while(!q1.empty()&& !q2.empty()){
+    //     TreeNode * node1=q1.front();
+    //     TreeNode * node2=q2.front();
+    //     q1.pop();
+    //     q2.pop();
+    //     if(!node1 && !node2) continue; // both are null continue for next element 
 
-        // If one is null or values don't match, they aren't the same
-        if(!node1 || !node2 || node1->val!=node2->val) return false ;
-        q1.push(node1->left);
-        q2.push(node2->left);
-        q1.push(node1->right);
-        q2.push(node2->right);
-      }
-      return q1.empty() && q2.empty();
+    //     // If one is null or values don't match, they aren't the same
+    //     if(!node1 || !node2 || node1->val!=node2->val) return false ;
+    //     q1.push(node1->left);
+    //     q2.push(node2->left);
+    //     q1.push(node1->right);
+    //     q2.push(node2->right);
+    //   }
+    //   return q1.empty() && q2.empty();
+
+
+
+    if (!p && !q) return true ;
+    if(!p || !q || p->val!=q->val) return false ;
+    return isSameTree(p->left,q->left) && isSameTree(p->right ,q->right);
 
     }
 };
